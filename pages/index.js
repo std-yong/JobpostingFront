@@ -1,10 +1,15 @@
-import Navbar from "../components/NavBar"
+import Navbar from "../components/NavBar";
+import RightBody from "../components/RightBody";
 
-export default function Home () {
-  return(
+function Home () {
+  return (
     <>
-      <Navbar/>
+      <Navbar />
+      <div>
+        <RightBody />
+      </div>
     </>
-
   );
 }
+
+export default Home;

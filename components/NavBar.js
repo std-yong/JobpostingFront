@@ -4,14 +4,20 @@ import React from "react";
 
 export default function Navbar() {
     const router = useRouter();
+
+    const handleClick = () => {
+        router.push("/"); 
+        window.scrollTo(0, 0);
+      };
+
     return (
-        <nav>
-                <img src="images/rolling.png" />
-        <div>
+        <nav style={{ position: 'fixed', top: '0', left: '0', width: '100%', zIndex: '999' }}>
+            <img src="images/rolling.png" onClick={handleClick} />
+            <div>
                 <Link legacyBehavior href="/">
-                    <a className={router.pathname === "/" ? "active" : ""}></a>
+                  <a className={router.pathname === "/" ? "active" : ""}></a>
                 </Link>
-        </div>
+            </div>
 
         <style jsx>{`
             nav {
@@ -39,6 +45,9 @@ export default function Navbar() {
                 display: flex;
                 gap: 10px;
             }
+            img:hover {
+                cursor: pointer;
+              }
             
             
             
