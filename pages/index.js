@@ -6,7 +6,7 @@ function Home () {
   return (
     <>
       <TestNavBar />
-      
+      <RightBody />
     </>
   );
 }
