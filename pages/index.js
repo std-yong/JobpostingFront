@@ -1,16 +1,14 @@
 import Navbar from "../components/NavBar";
-
+import TestNavBar from "../components/TestNavBar"
 import RightBody from "../components/RightBody";
-import MainBody from "../components/MainBody";
 
-export default function Home() {
+function Home () {
   return (
     <>
-      <Navbar />
-      <div style={{ display: "flex" }}>
-        
-        <RightBody />
-      </div>
+      <TestNavBar />
+      
     </>
   );
 }
+
+export default Home;
