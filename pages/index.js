@@ -6,11 +6,10 @@ function Home () {
   return (
     <>
       <TestNavBar />
-
+      <div>
       <RightBody />
-
+      </div>
     </>
   );
 }
-
 export default Home;
