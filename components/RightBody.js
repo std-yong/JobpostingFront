@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./RightBody.module.css";
+import styles from "../styles/RightBody.module.css";
 
 export default function RightBody() {
   return (
