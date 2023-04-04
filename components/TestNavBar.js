@@ -1,10 +1,12 @@
 import Link from 'next/link';
+import Head from 'next/head';
 
 function Navbar (){
     const HandlelogoClick = () => {
         window.scrollTo({ top : 0, behavior: 'smooth'});
     }
   return (
+    
     <nav>
       <div className="left" onClick={HandlelogoClick}> {/* 왼쪽 요소 */}
         <Link legacyBehavior href="/">
@@ -29,7 +31,7 @@ function Navbar (){
 
       <style jsx>{`
         nav {
-            {/*background-color: white;
+            background-color: white;
             color: #fff;
             height: 80px;
             width: 100vw;
@@ -40,7 +42,7 @@ function Navbar (){
             z-index: 999;
             top: 0px;
             right: 0px; 
-            left: 0px;*/}
+            left: 0px;
             width: 100%;
             height: 50px;
             position: fixed;
@@ -62,7 +64,7 @@ function Navbar (){
           border: none;
           background-color: #f2f2f2;
           padding: 5px 10px;
-          width: 100%;
+          width: 400px;
         }
         .right {
           flex-basis: 20%;
@@ -78,6 +80,7 @@ function Navbar (){
         }
       `}</style>
     </nav>
+  
   );
 };
 
