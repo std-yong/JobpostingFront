@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Head from 'next/head';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 
 function Navbar (){
     const HandlelogoClick = () => {
