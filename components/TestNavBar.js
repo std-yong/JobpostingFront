@@ -29,7 +29,7 @@ function Navbar (){
 
       <style jsx>{`
         nav {
-            background-color: var(--dark);
+            {/*background-color: white;
             color: #fff;
             height: 80px;
             width: 100vw;
@@ -40,7 +40,10 @@ function Navbar (){
             z-index: 999;
             top: 0px;
             right: 0px; 
-            left: 0px;
+            left: 0px;*/}
+            width: 100%;
+            height: 50px;
+            position: fixed;
         }
         .left {
           flex-basis: 0%;
