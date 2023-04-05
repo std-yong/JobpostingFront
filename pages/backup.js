@@ -1,14 +1,13 @@
-import TestNavBar from "../components/TestNavBar"
-import MainBody from "../components/MainBody";
-import CheckBox from "../components/CheckBox";
+import BootstrapHead from '../components/BootstrapHead'
 
-function Home () {
+const MyPage = () => {
   return (
-    <>
-      <TestNavBar />
-      <CheckBox/>
-      <MainBody />
-    </>
-  );
+    <div>
+      <BootstrapHead />
+      <h1>Welcome to My Page</h1>
+      <button className="btn btn-primary">Click me</button>
+    </div>
+  )
 }
-export default Home;
+
+export default MyPage

@@ -1,10 +1,13 @@
 import Link from 'next/link';
+import BootstrapHead from './BootstrapHead';
+
 
 function Navbar (){
     const HandlelogoClick = () => {
         window.scrollTo({ top : 0, behavior: 'smooth'});
     }
   return (
+
     <nav>
       <div className="left" onClick={HandlelogoClick}> {/* 왼쪽 요소 */}
         <Link legacyBehavior href="/">
@@ -26,7 +29,6 @@ function Navbar (){
           {/* 박스안의 요소 */}
         </div>
       </div>
-
       <style jsx>{`
         nav {
             background-color: white;
@@ -67,9 +69,9 @@ function Navbar (){
           margin-left: auto;
         }
         .right {
-          flex-basis: 20%;
-          /*height : 100px;*/
-          /*width : 100px;*/
+          flex-basis: 30%;
+          width : 110px;
+          height : 50px;
         }
         nav img {
           max-width: 100px;
@@ -77,13 +79,15 @@ function Navbar (){
         }
         .box {
           background-color: #f2f2f2;
-          padding: 10px 5px;
-          border-radius: 20px;
-          height : 100px;
+          padding: 0px 5px;
+          border-radius: 5px;
+          height : 50px;
           width : 100px;        
         }
       `}</style>
     </nav>
+
+  
   );
 };
 export default Navbar;
