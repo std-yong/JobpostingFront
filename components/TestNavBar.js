@@ -5,7 +5,6 @@ function Navbar (){
         window.scrollTo({ top : 0, behavior: 'smooth'});
     }
   return (
-    
     <nav>
       <div className="left" onClick={HandlelogoClick}> {/* 왼쪽 요소 */}
         <Link legacyBehavior href="/">
@@ -20,6 +19,8 @@ function Navbar (){
             placeholder="검색"
             aria-label="Search"
           />
+          
+          
         </div>
       </div>
       <div className="right"> {/* 오른쪽 요소 */}
@@ -50,20 +51,22 @@ function Navbar (){
           flex-basis: 0%;
         }
         .center {
-          flex-basis: 60%;
+          flex-basis: 100%;
           display: flex;
           justify-content: center;
+          
         }
         .search-box {
           background-color: white;
-          padding: 5px 10px;
-          border-radius: 20px;
+          width: 300px;
+          border-radius: 30px;
         }
         .search-input {
           border: none;
           background-color: #f2f2f2;
           padding: 5px 10px;
-          width: 400px;
+          width: 300px;
+          margin-left: auto;
         }
         .right {
           flex-basis: 20%;
@@ -76,9 +79,14 @@ function Navbar (){
           background-color: #f2f2f2;
           padding: 10px 5px;
           border-radius: 20px;
+        
+        
         }
       `}</style>
     </nav>
+    
+
+    
   
   );
 };
