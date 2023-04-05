@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "../styles/LeftBody.module.css";
-import 'bootstrap/dist/css/bootstrap.min.css';
+//import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default LeftBody;
 
