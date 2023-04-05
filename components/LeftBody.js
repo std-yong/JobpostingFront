@@ -15,21 +15,15 @@ function LeftBody () {
             <span className={styles.feed_name_txt}>{feed.user_id}</span>
           </div>
           <img className={styles.feed_img} src={feed.image} />
-
           <div className={styles.feed_icon}>
             <div>
-              <span className="material-icons-outlined">favorite_border</span>
-              <span className="material-icons-outlined">mode_comment</span>
-              <span className="material-icons">send</span>
+              <span className={styles.feed_name_txt}>{feed.user_id}</span>
             </div>
             <div>
-              <span className="material-icons-outlined">turned_in_not</span>
+              <img className={styles.material_icons_feed} src="leftbody/favorite.svg"/>
+              <img className={styles.material_icons_feed} src="leftbody/send.svg"/>
+              <img className={styles.material_icons_feed} src="leftbody/bookmark.svg"/>
             </div>
-          </div>
-          <div className="feed_like">
-            <p className="feed_txt">
-              <b>{feed.like_count}</b>
-            </p>
           </div>
           <div className="feed_content">
             <p className="feed_txt">
