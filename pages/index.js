@@ -1,4 +1,4 @@
-import "bootstrap/dist/css/bootstrap.min.css";
+//import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function Home() {
   return (
@@ -12,7 +12,6 @@ justify-content-center align-items-center">
       >
         Launch demo modal
       </button>
-
       <div
         className="modal fade"
         id="exampleModal"

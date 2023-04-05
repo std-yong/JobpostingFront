@@ -1,6 +1,5 @@
 import Link from 'next/link';
 
-
 function Navbar (){
     const HandlelogoClick = () => {
         window.scrollTo({ top : 0, behavior: 'smooth'});
@@ -24,7 +23,7 @@ function Navbar (){
       </div>
       <div className="right"> {/* 오른쪽 요소 */}
         <div className="box">
-          
+          {/* 박스안의 요소 */}
         </div>
       </div>
 
@@ -73,21 +72,18 @@ function Navbar (){
           /*width : 100px;*/
         }
         nav img {
-                max-width: 100px;
-                margin-bottom: 5px;
+          max-width: 100px;
+          margin-bottom: 5px;
         }
         .box {
           background-color: #f2f2f2;
           padding: 10px 5px;
           border-radius: 20px;
           height : 100px;
-          width : 100px;
-        
-        
+          width : 100px;        
         }
       `}</style>
     </nav>
   );
 };
-
 export default Navbar;

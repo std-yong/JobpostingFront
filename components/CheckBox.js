@@ -1,20 +1,73 @@
-function CheckBox (){
-    return (
-        <div className="category-box">
-        <style jsx>{`
-            .category-box {
-                background-color: #f2f2f2;              
-                padding: 20px;
-                display: flex; /* flex 컨테이너로 설정 */
-                justify-content: center; /* 아이템 수평 정렬 */
-                align-items: center; /* 아이템 수직 정렬 */
-                width: 500px;
-                height: 100px;
-                margin-left: 385px;
-                /*margin-right : 100px;*/
-            }
-            `}</style>    
+import React, { useState } from "react";
+
+const categories = [  
+    {id: 1, name: "직무", options: ["IT", "마케팅", "경영"]},
+    {id: 2, name: "지역", options: ["서울", "경기", "부산"]},
+    {id: 3, name: "기업형태", options: ["스타트업", "중소기업", "대기업"]}
+];
+
+function CheckBox() {
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const handleCategoryChange = (categoryId, option) => {
+    let newCategories = [...selectedCategories];
+    const index = newCategories.findIndex(c => c.categoryId === categoryId);
+
+    if (index >= 0) {
+      if (newCategories[index].options.includes(option)) {
+        newCategories[index].options = newCategories[index].options.filter(o => o !== option);
+      } else {
+        newCategories[index].options.push(option);
+      }
+    } else {
+      newCategories.push({ categoryId: categoryId, options: [option] });
+    }
+
+    setSelectedCategories(newCategories);
+  };
+
+  return (
+    <div className="category-box">
+      {categories.map(category => (
+        <div key={category.id}>
+          <p>{category.name}</p>
+          {category.options.map(option => (
+            <label key={option}>
+              <input
+                type="checkbox"
+                checked={selectedCategories.some(c => c.categoryId === category.id && c.options.includes(option))}
+                onChange={() => handleCategoryChange(category.id, option)}
+              />
+              {option}
+            </label>
+          ))}
         </div>
-    );
+      ))}
+      <style jsx>{`
+        .category-box {
+          background-color: #f2f2f2;
+          padding: 50px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 500px;
+          height: 100px;
+          margin-left: 363px;
+        }
+        .category {
+          margin-right: 30px;
+          font-size: 20px;
+        }
+        .selected {
+          font-weight: bold;
+          color : tomato;
+        }
+        .sub-category {
+          margin-left: 20px;
+        }
+      `}</style>
+      
+    </div>
+  );
 }
-export default CheckBox
+
+export default CheckBox;
