@@ -10,6 +10,7 @@ function Home () {
       <CheckBox/>
       <MainBody />
     </>
+
   );
 }
 export default Home;
