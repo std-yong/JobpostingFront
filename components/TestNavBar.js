@@ -19,13 +19,11 @@ function Navbar (){
             placeholder="검색"
             aria-label="Search"
           />
-          
-          
         </div>
       </div>
       <div className="right"> {/* 오른쪽 요소 */}
         <div className="box">
-          {/* 오른쪽 요소에 들어갈 내용 */}
+          {/* 박스안의 요소 */}
         </div>
       </div>
 
@@ -70,25 +68,22 @@ function Navbar (){
         }
         .right {
           flex-basis: 20%;
+          /*height : 100px;*/
+          /*width : 100px;*/
         }
         nav img {
-                max-width: 100px;
-                margin-bottom: 5px;
+          max-width: 100px;
+          margin-bottom: 5px;
         }
         .box {
           background-color: #f2f2f2;
           padding: 10px 5px;
           border-radius: 20px;
-        
-        
+          height : 100px;
+          width : 100px;        
         }
       `}</style>
     </nav>
-    
-
-    
-  
   );
 };
-
 export default Navbar;
