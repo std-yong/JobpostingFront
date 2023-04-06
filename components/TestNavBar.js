@@ -19,6 +19,8 @@ function Navbar (){
     };
 
   return (
+    <>
+    <BootstrapHead/>
     <nav>
       <div className="left" onClick={HandlelogoClick}> {/* 왼쪽 요소 */}
         <Link legacyBehavior href="/">
@@ -58,15 +60,14 @@ function Navbar (){
       </Modal>
       <style jsx>{`
         nav {
-            background-color: white;
-            color: #fff;
+            background-color: #fafafa;
             height: 80px;
             width: 100vw;
             display: flex;
             align-items: left;
             padding: 13px; 
             position: fixed;
-            z-index: 999;
+            z-index: 100;
             top: 0px;
             right: 0px; 
             left: 0px;
@@ -104,7 +105,7 @@ function Navbar (){
           margin-bottom: 5px;
         }
         .box {
-          background-color: #f2f2f2;
+          
           padding: 0px 0px;
           border-radius: 5px;
           height : 50px;
@@ -118,6 +119,7 @@ function Navbar (){
           width: 100%;
           height: 100%;
           position: absolute;
+          z-index: 9999;
           left: 0;
           top: 0;
           display: flex;
@@ -141,6 +143,7 @@ function Navbar (){
         }
       `}</style>
     </nav>  
+    </>
   );
 };
 export default Navbar;
