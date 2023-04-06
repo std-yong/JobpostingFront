@@ -24,7 +24,7 @@ function Navbar (){
       </div>
       <div className="right"> {/* 오른쪽 요소 */}
         <div className="box">
-          {/* 박스안의 요소 */}
+          <img className="material_icons_feed" src="navbar/addbox.svg" />
         </div>
       </div>
       <style jsx>{`
@@ -80,6 +80,9 @@ function Navbar (){
           border-radius: 5px;
           height : 50px;
           width : 100px;        
+        }
+        .material_icons_feed {
+          display: flex;
         }
       `}</style>
     </nav>  
