@@ -1,41 +1,52 @@
-//import "bootstrap/dist/css/bootstrap.min.css";
+import React from "react";
+import styles from "../styles/LeftBody.module.css";
+import BootstrapHead from "../components/BootstrapHead";
+import { getContent } from './api';
 
-export default function Home() {
+export default LeftBody;
+
+function LeftBody () {
+  const [contents, setContents] = React.useState([]);
+
+  React.useEffect(() => {
+    async function fetchContent() {
+      const contentData = await getContent();
+      setContents(contentData);
+    }
+    fetchContent();
+  }, []);
+
   return (
-    <div className="d-flex 
-justify-content-center align-items-center">
-      <button
-        type="button"
-        className="btn btn-primary"
-        data-bs-toggle="modal"
-        data-bs-target="#exampleModal"
-      >
-        Launch demo modal
-      </button>
-      <div
-        className="modal fade"
-        id="exampleModal"
-        tabIndex="-1"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLabel">
-                Modal title
-              </h5>
-              <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
+    <>
+      <BootstrapHead />
+      <div className={styles.left_body}>
+        {contents.map((content) => (
+          <div key={content.id} className={styles.feed_box}>
+            <div className={styles.feed_name}>
+              <div className={styles.profile_box}>
+                <img className={styles.profile_img} src={content.company_image} />
+              </div>
+              <span className={styles.feed_name_txt}>{content.company_name}</span>
             </div>
-            <div className="modal-body">...</div>
+            <img className={styles.feed_img} src={content.job_poster} />
+            <div className={styles.feed_icon}>
+              <div>
+                <span className={styles.feed_name_txt}>{content.company_name}</span>
+              </div>
+              <div>
+                <img className={styles.material_icons_feed} src="leftbody/favorite.svg" />
+                <img className={styles.material_icons_feed} src="leftbody/send.svg" />
+                <img className={styles.material_icons_feed} src="leftbody/bookmark.svg" />
+              </div>
+            </div>
+            <div className="feed_content">
+              <p className="feed_txt">
+                <span className={styles.feed_txt}>{content.job_description}</span>
+              </p>
+            </div>
           </div>
-        </div>
+        ))}
       </div>
-    </div>
+    </>
   );
 }
