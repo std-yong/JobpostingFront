@@ -6,13 +6,13 @@ pipeline {
 
 
     environment {
-        gitName = 'seungsura'
-        gitEmail = 'seungsura@gmail.com'
-        gitWebaddress = 'https://github.com/seungsura/JobPosting.git'
-        gitSshaddress = 'git@github.com:seungsura/JobPosting.git'
+        gitName = 'std-yong'
+        gitEmail = 'std-yong@gmail.com'
+        gitWebaddress = 'https://github.com/std-yong/JobpostingFront.git'
+        gitSshaddress = 'git@github.com:std-yong/JobpostingFront.git'
         gitCredential = 'ssh_cre'
-        dockerHubRegistry = 'harbor.ks.io/test'
-        dockerHubRegistryCredential = 'docker_cre'
+        dockerHubRegistry = '236747833953.dkr.ecr.ap-northeast-2.amazonaws.com/jinyong'
+        dockerHubRegistryCredential = 'ecr_cre'
     }
 
     stages {
