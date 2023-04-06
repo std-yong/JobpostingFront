@@ -1,13 +1,11 @@
 import Link from 'next/link';
 import BootstrapHead from './BootstrapHead';
 
-
 function Navbar (){
     const HandlelogoClick = () => {
         window.scrollTo({ top : 0, behavior: 'smooth'});
     }
   return (
-
     <nav>
       <div className="left" onClick={HandlelogoClick}> {/* 왼쪽 요소 */}
         <Link legacyBehavior href="/">
@@ -37,7 +35,7 @@ function Navbar (){
             width: 100vw;
             display: flex;
             align-items: left;
-            padding: 13px;
+            padding: 13px; 
             position: fixed;
             z-index: 999;
             top: 0px;
@@ -54,7 +52,6 @@ function Navbar (){
           flex-basis: 100%;
           display: flex;
           justify-content: center;
-          
         }
         .search-box {
           background-color: white;
@@ -69,8 +66,8 @@ function Navbar (){
           margin-left: auto;
         }
         .right {
-          flex-basis: 30%;
-          width : 110px;
+          flex-basis: 0%;
+          width : 100px;
           height : 50px;
         }
         nav img {
@@ -79,15 +76,13 @@ function Navbar (){
         }
         .box {
           background-color: #f2f2f2;
-          padding: 0px 5px;
+          padding: 0px 0px;
           border-radius: 5px;
           height : 50px;
           width : 100px;        
         }
       `}</style>
-    </nav>
-
-  
+    </nav>  
   );
 };
 export default Navbar;
