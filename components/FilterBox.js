@@ -1,19 +1,16 @@
 import React, { useState } from "react";
-
 const categories = [  
     {id: 1, name: "직무", options: ["IT", "마케팅", "경영","영업","회계","운송"]},
     {id: 2, name: "지역", options: ["서울", "경기", "경북","경남","충청","충북","전남","전북","강원"]},
     {id: 3, name: "기업형태", options: ["스타트업", "강소기업","중소기업", "대기업","외국계","공기업"]},
     {id: 4, name: "경력", options: ["신입", "1~3","4~6", "7~10","10년 이상"]}
   ];
-
 const FilterBox = () =>{
 
     const [selectedCategories, setSelectedCategories] = useState([]);
     const handleCategoryChange = (categoryId, option) => {
       let newCategories = [...selectedCategories];
       const index = newCategories.findIndex(c => c.categoryId === categoryId);
-  
       if (index >= 0) {
         if (newCategories[index].options.includes(option)) {
           newCategories[index].options = newCategories[index].options.filter(o => o !== option);
@@ -23,14 +20,13 @@ const FilterBox = () =>{
       } else {
         newCategories.push({ categoryId: categoryId, options: [option] });
       }
-  
       setSelectedCategories(newCategories);
     };
     return(
         <>
-          <div className="container text-center" style={{backgroundColor: "#f2f2f2",width: '80%', marginTop : '5px', marginBottom : '5px', padding : '12px',borderRadius : '5px'}}>
+          <div className="container text-center" style={{backgroundColor: "#f2f2f2",width: '1000px', marginTop : '5px', marginBottom : '5px', padding : '5px',borderRadius : '5px'}}>
           {categories.map((category, index) => (
-            <div key={category.id} className={`category ${index === categories.length - 1 ? '' : 'border-right'}`}>
+            <div key={category.id} className={`category ${index === categories.length - 0 ? '' : 'border-right'}`}>
             <div className="bigcategory">{category.name}</div>
             <div className="category-options">
                 {category.options.map(option => (
@@ -46,15 +42,19 @@ const FilterBox = () =>{
             </div>
             </div>
       ))}
+      
         <style jsx>
             {`
             .category {
-                    margin-right: 0px;
-                    font-size: 20px;
+                    margin-right:0px;
+                    font-size: 12px;
                     background-color: #f2f2f2;
                     border-radius: 5px;
                     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
                     text-align: left;
+                    }
+                    .category.border-right {
+                      border-left: 200px solid #c8c8c8;
                     }
                     .category.selected {
                     background-color: #ff8080;
@@ -78,6 +78,7 @@ const FilterBox = () =>{
                       font-size : 16px;
                       padding : 5px;
                       font-weight : bold;
+                      
                     } 
             `}
         </style>
@@ -86,9 +87,3 @@ const FilterBox = () =>{
 );
 }
 export default FilterBox;
-
-
-
-
-
-
