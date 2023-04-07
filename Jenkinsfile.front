@@ -1,27 +1,15 @@
 pipeline {
-    agent any 
-
-    environment {
-        gitName = 'std-yong'
-        gitEmail = 'std-yong@gmail.com'
-        gitWebaddress = 'https://github.com/std-yong/JobpostingFront.git'
-        gitSshaddress = 'git@github.com:std-yong/JobpostingFront.git'
-        gitCredential = 'ssh_cre'
-        dockerHubRegistry = '236747833953.dkr.ecr.ap-northeast-2.amazonaws.com/jinyong'
-        dockerHubRegistryCredential = 'ecr_cre'
-    }
-
-
     agent {
-    	node('slave') {
-    		stages{
-    			stage('Hello World?') {
-    				touch hello.txt
-    			}
-    		}
-    	}
-
-
+        // 해당 노드의 레이블을 지정합니다.
+        label 'build_server'
     }
+    stages {
+        stage('Build') {
+            steps {
+                // 빌드를 실행하는 스텝을 작성합니다.
+                // 이 예시에서는 Maven을 사용하여 빌드합니다.
+                touch hello.txt
+            }
+        }
 
 }
