@@ -1,7 +1,7 @@
 pipeline {
     agent {
         // 해당 노드의 레이블을 지정합니다.
-        label 'bid'
+        label 'build_server'
     }
     stages {
         stage('example') {
