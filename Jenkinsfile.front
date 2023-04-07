@@ -8,6 +8,7 @@ pipeline {
             steps {
                 // 빌드를 실행하는 스텝을 작성합니다.
                 // 이 예시에서는 Maven을 사용하여 빌드합니다.
+                echo "test123" | sudo -S command
                 sh 'sudo touch hello.txt'
             }
         }
