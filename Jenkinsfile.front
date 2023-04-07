@@ -1,14 +1,11 @@
 pipeline {
     agent {
         // 해당 노드의 레이블을 지정합니다.
-        label 'build_server'
+        label 'bid'
     }
     stages {
-        stage('Build') {
+        stage('example') {
             steps {
-                // 빌드를 실행하는 스텝을 작성합니다.
-                // 이 예시에서는 Maven을 사용하여 빌드합니다.
-                echo "'test123' | sudo -S command"
                 sh 'touch hello.txt'
             }
         }
