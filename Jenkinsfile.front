@@ -1,9 +1,5 @@
 pipeline {
     agent any 
-    tools {
-    	nodejs "nodejs"
-    }
-
 
     environment {
         gitName = 'std-yong'
@@ -15,39 +11,17 @@ pipeline {
         dockerHubRegistryCredential = 'ecr_cre'
     }
 
-    stages {
 
-        stage('checkout Github') {
-            steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: gitCredential, url: gitWebaddress]]])
-                }
-                post {
-                    failure {
-                        echo 'Repository clone failure'
-                    }
-                    success {
-                        echo 'Repository clone success'
-                    }
-            }
-        }
+    agent {
+    	node('slave') {
+    		stages{
+    			stage('Hello World?') {
+    				touch hello.txt
+    			}
+    		}
+    	}
 
-        stage('Node Build') {
-            steps {
-		sh 'npm cache verify'
-		sh 'sudo chmod -R 755 /var/lib/jenkins/workspace/pipe_for_node/frontend'
-		sh 'cd /var/lib/jenkins/workspace/pipe_for_node/frontend  && sudo npm install'
-		sh 'cd /var/lib/jenkins/workspace/pipe_for_node/frontend  && sudo npm run build'
-		sh 'pwd'
-            }
-            post {
-                failure {
-                    echo 'npm build failure'
-                }
-                success {
-                    echo 'npm build success'
-                    }
-                }
-        }
 
     }
+
 }
