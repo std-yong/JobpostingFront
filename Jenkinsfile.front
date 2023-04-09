@@ -8,10 +8,26 @@ pipeline {
             steps {
                 sh 'touch hello.txt'
             }
+            post {
+                failure {
+                    echo ' failure'
+                }
+                success {
+                    echo ' success'
+                }
+            }
         }
-        stage('echo') {
-            steps {
-                sh 'echo > 'good morning''
+        stage('copy') {
+        		steps {
+        				sh 'cp -f ./* /sourceForJobposting/frontend/web-front'
+        		}
+        		post {
+                failure {
+                    echo 'copy failure'
+                }
+                success {
+                    echo 'copy success'
+                }
             }
         }
     }
