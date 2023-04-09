@@ -17,16 +17,16 @@ pipeline {
                 }
             }
         }
-        stage('copy') {
+        stage('build') {
         		steps {
-        				sh 'cp -f ./* /sourceForJobposting/frontend/web-front'
+        		    sh 'docker build -t front-web:1.0 .'
         		}
         		post {
                 failure {
-                    echo 'copy failure'
+                    echo 'build failure'
                 }
                 success {
-                    echo 'copy success'
+                    echo 'build success'
                 }
             }
         }
