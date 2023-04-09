@@ -2,7 +2,7 @@ FROM node:17-alpine
 
 WORKDIR /home/app/frontend
 
-COPY /home/build/workspace/example /home/app/frontend
+COPY /home/build/workspace/example/* /home/app/frontend
 
 RUN npm install
 
