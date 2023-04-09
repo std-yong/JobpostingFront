@@ -18,12 +18,12 @@ pipeline {
             }
         }
         stage('build') {
-        		steps {
-        		    sh 'docker build -t front-web:1.0 .'
-        		}
-        		post {
+        	steps {
+        	    sh 'docker build -t front-web:1.0 .'
+        	}
+        	post {
                 failure {
-                    echo 'build failure'
+                   echo 'build failure'
                 }
                 success {
                     echo 'build success'
