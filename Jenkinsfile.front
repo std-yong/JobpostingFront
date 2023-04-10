@@ -3,10 +3,14 @@ pipeline {
         // 해당 노드의 레이블을 지정합니다.
         label 'build_server'
     }
+    environment{
+    	pod_name = 'front-web'
+    	ECR_Registry = '236747833953.dkr.ecr.ap-northeast-2.amazonaws.com'
+    }
     stages {
-		stage('Docker iamge build') {
+	stage('Docker iamge build') {
             steps {
-                sh 'sudo docker build -t front-web:1.0 .'
+                sh 'sudo docker build -t ${pod_name}:${currentBuild.number} .'
             }
             post {
                 failure {
@@ -17,6 +21,21 @@ pipeline {
                 }
             }
         }
+
+	stage('Docker image Push'){
+	    steps {
+                sh 'docker push ${ECR_Registry}/${pod_name}:${currentBuild.number}'
+            }
+            post {
+                failure {
+                    echo 'Docker image Push failure'
+                }
+                success {
+                    echo 'Docker image Push success'
+                }
+            }
+	}	
+	
 
     }
 }
