@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('Docker iamge build') {
             steps {
-                sh 'sudo docker build -t ${pod_name}:${currentBuild.number} .'
+                sh "sudo docker build -t ${pod_name}:${currentBuild.number} ."
             }
             post {
                 failure {
@@ -25,7 +25,7 @@ pipeline {
 
         stage('Docker login to ECR') {
             steps {
-                sh 'aws ecr get-login-password --region ${AWS_REGION} | sudo docker login --username AWS --password-stdin ${ECR_Registry}'
+                sh "aws ecr get-login-password --region ${AWS_REGION} | sudo docker login --username AWS --password-stdin ${ECR_Registry}"
             }
             post {
                 failure {
@@ -39,7 +39,7 @@ pipeline {
 
         stage('Docker image Push') {
             steps {
-                sh 'sudo docker push ${ECR_Registry}/${pod_name}:${currentBuild.number}'
+                sh "sudo docker push ${ECR_Registry}/${pod_name}:${currentBuild.number}"
             }
             post {
                 failure {
