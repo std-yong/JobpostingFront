@@ -4,7 +4,7 @@ pipeline {
         label 'build_server'
     }
     environment {
-        pod_name = 'front-web'
+        ECR_Repository_name = 'jinyong'
         ECR_Registry = '236747833953.dkr.ecr.ap-northeast-2.amazonaws.com'
         AWS_REGION = 'ap-northeast-2'
     }
@@ -27,7 +27,7 @@ pipeline {
 
         stage('Docker image build') {
             steps {
-                sh "sudo docker build -t ${pod_name}:${currentBuild.number}.${currentBuild.number} ."
+                sh "sudo docker build -t ${ECR_Registry}/${ECR_Repository_name}:${currentBuild.number} ."
             }
             post {
                 failure {
@@ -39,6 +39,18 @@ pipeline {
             }
         }
 
-
+        stage('Docker image Push') {
+            steps {
+                sh "sudo docker push ${ECR_Registry}/${ECR_Repository_name}:${currentBuild.number}"
+            }
+            post {
+                failure {
+                    echo 'Docker image Push failure'
+                }
+                success {
+                    echo 'Docker image Push success'
+                }
+            }
+        }
     }
 }
