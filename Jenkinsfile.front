@@ -9,6 +9,12 @@ pipeline {
         AWS_REGION = 'ap-northeast-2'
     }
     stages {
+        stage('Docker Login') {
+            steps {
+                withCredentials([aws(credentialsId: 'aws_configure', region: '${AWS_REGION}')]) {
+                    sh "aws ecr get-login-password | docker login --username AWS --password-stdin ${ECR_Registry}"
+                }
+            }    
         stage('Docker iamge build') {
             steps {
                 sh "sudo docker build -t ${pod_name}:${currentBuild.number} ."
