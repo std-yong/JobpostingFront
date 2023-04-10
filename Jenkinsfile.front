@@ -6,7 +6,7 @@ pipeline {
     stages {
 		stage('Docker iamge build') {
             steps {
-                sh 'docker build -t front-web:1.0 .'
+                sh 'sudo docker build -t front-web:1.0 .'
             }
             post {
                 failure {
