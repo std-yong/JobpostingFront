@@ -4,31 +4,19 @@ pipeline {
         label 'build_server'
     }
     stages {
-        stage('example') {
+		stage('Docker iamge build') {
             steps {
-                sh 'touch hello.txt'
+                sh 'docker build -t front-web:1.0 .'
             }
             post {
                 failure {
-                    echo ' failure'
+                    echo 'Docker build failure'
                 }
                 success {
-                    echo ' success'
+                    echo 'Docker build success'
                 }
             }
         }
-        stage('build') {
-        	steps {
-        	    sh 'sudo docker build -t front-web:1.0 .'
-        	}
-        	post {
-                failure {
-                   echo 'build failure'
-                }
-                success {
-                    echo 'build success'
-                }
-            }
-        }
+
     }
 }
