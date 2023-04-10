@@ -27,7 +27,7 @@ pipeline {
 
         stage('Docker image build') {
             steps {
-                sh "sudo docker build -t ${pod_name}:${currentBuild.number} ."
+                sh "sudo docker build -t ${ECR_Registry}/${pod_name}:${currentBuild.number} ."
             }
             post {
                 failure {
