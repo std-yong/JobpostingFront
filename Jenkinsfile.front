@@ -9,13 +9,23 @@ pipeline {
         AWS_REGION = 'ap-northeast-2'
     }
     stages {
-        stage('Docker Login') {
+        stage('Docker Login to ECR') {
             steps {
                 withCredentials([aws(credentialsId: 'aws_configure', region: '${AWS_REGION}')]) {
                     sh "aws ecr get-login-password | docker login --username AWS --password-stdin ${ECR_Registry}"
                 }
-            }    
-        stage('Docker iamge build') {
+            }
+            post {
+                failure {
+                    echo 'Docker login to ECR failure'
+                }
+                success {
+                    echo 'Docker login to ECR success'
+                }
+            }
+        }
+
+        stage('Docker image build') {
             steps {
                 sh "sudo docker build -t ${pod_name}:${currentBuild.number} ."
             }
@@ -25,20 +35,6 @@ pipeline {
                 }
                 success {
                     echo 'Docker build success'
-                }
-            }
-        }
-
-        stage('Docker login to ECR') {
-            steps {
-                sh "aws ecr get-login-password --region ${AWS_REGION} | sudo docker login --username AWS --password-stdin ${ECR_Registry}"
-            }
-            post {
-                failure {
-                    echo 'Docker login to ECR failure'
-                }
-                success {
-                    echo 'Docker login to ECR success'
                 }
             }
         }
