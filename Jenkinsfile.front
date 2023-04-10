@@ -8,22 +8,7 @@ pipeline {
     	ECR_Registry = '236747833953.dkr.ecr.ap-northeast-2.amazonaws.com'
     }
     stages {
-    	stage('checkout Github') {
-            steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: gitCredential, url: gitWebaddress]]])
-                }
-            post {
-                failure {
-                    echo 'Repository clone failure'
-                }
-                success {
-                    echo 'Repository clone success'
-                }
-            }
-        }
-    
-    
-	stage('Docker iamge build') {
+    	stage('Docker iamge build') {
             steps {
                 sh 'sudo docker build -t ${pod_name}:${currentBuild.number} .'
             }
@@ -51,6 +36,5 @@ pipeline {
             }
 	}	
 	
-
     }
 }
