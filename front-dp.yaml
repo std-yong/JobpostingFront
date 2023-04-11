@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-front
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-front
+  template:
+    metadata:
+      labels:
+        app: web-front
+    spec:
+      containers:
+        - name: web-front
+          image: 236747833953.dkr.ecr.ap-northeast-2.amazonaws.com/web-front:1.5
+          ports:
+            - containerPort: 3000
+          volumeMounts:
+            - name: frontend-volume
+              mountPath: /home/app/frontend
+      volumes:
+        - name: frontend-volume
+          hostPath:
+            path: /workspace/sourceForJobposting/frontend/web-front
+      imagePullSecrets:
+        - name: ap-northeast-2-ecr-secret
+      restartPolicy: Always
