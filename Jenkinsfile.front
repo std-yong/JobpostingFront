@@ -9,6 +9,7 @@ pipeline {
         gitEmail = 'std-yong@github.com'
         gitWebaddress = 'https://github.com/std-yong/JobpostingFront.git'
         gitSshaddress = 'git@github.com:std-yong/JobpostingFront.git'
+        gitCredential = 'git_cre'
         ECR_Repository_name = 'jinyong'
         ECR_Registry = '236747833953.dkr.ecr.ap-northeast-2.amazonaws.com'
         AWS_REGION = 'ap-northeast-2'
