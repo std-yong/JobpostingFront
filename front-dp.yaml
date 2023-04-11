@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: web-front
-          image: 236747833953.dkr.ecr.ap-northeast-2.amazonaws.com/jinyong:1.5
+          image: 236747833953.dkr.ecr.ap-northeast-2.amazonaws.com/jinyong:58
           ports:
             - containerPort: 3000
           volumeMounts:
