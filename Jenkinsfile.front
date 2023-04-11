@@ -61,8 +61,7 @@ pipeline {
                 success {
                     echo 'Docker image Push success'
                     sh "docker image rm -f  ${ECR_Registry}/${ECR_Repository_name}:${currentBuild.number}"
-                    sh "docker image rm -f  ${ECR_Registry}/${ECR_Repository_name}:latest"
-                    sh " aws ecr batch-delete-image --repository-name jinyong --image-ids imageTag=${currentBuild.number}-1 --region ap-northeast-2"                    
+                    sh "docker image rm -f  ${ECR_Registry}/${ECR_Repository_name}:latest"                   
                 }
             }
         }
