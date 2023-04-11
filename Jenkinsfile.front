@@ -1,6 +1,5 @@
 pipeline {
     agent {
-        // 해당 노드의 레이블을 지정합니다.
         label 'build_server'
     }
     
@@ -16,25 +15,23 @@ pipeline {
     }
     
     stages {
-        stages {
-        
-        stage('checkout Github') {
+        stage('Checkout Github') {
             steps {
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: gitCredential, url: gitWebaddress]]])
-                }
+            }
             post {
                 failure {
                     echo 'Repository clone failure'
                 }
                 success {
-                echo 'Repository clone success'
+                    echo 'Repository clone success'
                 }
             }
         }
         
         stage('Docker Login to ECR') {
             steps {
-                withCredentials([aws(credentialsId: 'aws_cre', region: '${AWS_REGION}')]) {
+                withCredentials([aws(credentialsId: 'aws_cre', region: AWS_REGION)]) {
                     sh "aws ecr get-login-password | docker login --username AWS --password-stdin ${ECR_Registry}"
                 }
             }
@@ -48,7 +45,7 @@ pipeline {
             }
         }
 
-        stage('Docker image build') {
+        stage('Docker Image Build') {
             steps {
                 sh "sudo docker build -t ${ECR_Registry}/${ECR_Repository_name}:${currentBuild.number} ."
                 sh "sudo docker build -t ${ECR_Registry}/${ECR_Repository_name}:latest ."
@@ -56,7 +53,6 @@ pipeline {
             post {
                 failure {
                     echo 'Docker build failure'
-                    // 이미지 생성이 안될때 이유가 디스크 공간 부족인 경우가 가끔 있기 때문에 삭제해줌
                     sh "docker system prune -a --force"
                 }
                 success {
@@ -64,7 +60,7 @@ pipeline {
                 }
             }
         }
-        stage('Docker image Push') {
+        stage('Docker Image Push') {
             steps {
                 sh "sudo docker push ${ECR_Registry}/${ECR_Repository_name}:${currentBuild.number}"
                 sh "sudo docker push ${ECR_Registry}/${ECR_Repository_name}:latest"
@@ -72,24 +68,23 @@ pipeline {
             post {
                 failure {
                     echo 'Docker image Push failure'
-                    sh "docker image rm -f  ${ECR_Registry}/${ECR_Repository_name}:${currentBuild.number}"
-                    sh "docker image rm -f  ${ECR_Registry}/${ECR_Repository_name}:latest"
+                    sh "docker image rm -f ${ECR_Registry}/${ECR_Repository_name}:${currentBuild.number}"
+                    sh "docker image rm -f ${ECR_Registry}/${ECR_Repository_name}:latest"
                 }
                 success {
                     echo 'Docker image Push success'
-                    sh "docker image rm -f  ${ECR_Registry}/${ECR_Repository_name}:${currentBuild.number}"
-                    sh "docker image rm -f  ${ECR_Registry}/${ECR_Repository_name}:latest"                   
+                    sh "docker image rm -f ${ECR_Registry}/${ECR_Repository_name}:${currentBuild.number}"
+                    sh "docker image rm -f ${ECR_Registry}/${ECR_Repository_name}:latest"                   
                 }
             }
         }
 
-        stage('k8s manifest file update') {
+        stage('k8s Manifest File Update') {
             steps {
                 git credentialsId: gitCredential,
                 url: gitWebaddress,
                 branch: 'main'
 
-                // 이미지 태그 변경 후 메인 브랜치에 푸시
                 sh "git config --global user.email ${gitEmail}"
                 sh "git config --global user.name ${gitName}"
                 sh "sed -i 's@${ECR_Repository_name}:.*@${ECR_Repository_name}:${currentBuild.number}@g' front-dp.yaml"                
@@ -105,11 +100,13 @@ pipeline {
                     echo 'Container Deploy failure'
                 }
                 success {
-                    echo 'Container Deploy success'  
+                    echo 'Container Deploy success'
                 }
             }
         }
-
         
     }
 }
+
+
+
