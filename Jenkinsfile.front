@@ -38,9 +38,12 @@ pipeline {
             post {
                 failure {
                     echo 'Docker login to ECR failure'
+                    sh 'aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin 236747833953.dkr.ecr.ap-northeast-2.amazonaws.com'
                 }
                 success {
                     echo 'Docker login to ECR success'
+                    sh 'aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin 236747833953.dkr.ecr.ap-northeast-2.amazonaws.com'
+                    
                 }
             }
         }
