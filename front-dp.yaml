@@ -17,13 +17,6 @@ spec:
           image: 236747833953.dkr.ecr.ap-northeast-2.amazonaws.com/jinyong:65
           ports:
             - containerPort: 3000
-          volumeMounts:
-            - name: frontend-volume
-              mountPath: /home/app/frontend
-      volumes:
-        - name: frontend-volume
-          hostPath:
-            path: /workspace/sourceForJobposting/frontend/web-front
       imagePullSecrets:
         - name: ap-northeast-2-ecr-secret
       restartPolicy: Always
