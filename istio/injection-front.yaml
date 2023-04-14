@@ -26,7 +26,7 @@ spec:
         service.istio.io/canonical-revision: latest
     spec:
       containers:
-      - image: 236747833953.dkr.ecr.ap-northeast-2.amazonaws.com/web-front:25
+      - image: 236747833953.dkr.ecr.ap-northeast-2.amazonaws.com/web-front:26
         name: web-front
         ports:
         - containerPort: 3000
