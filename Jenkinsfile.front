@@ -108,7 +108,7 @@ pipeline {
         stage('Istio Sidecar Injection') {
             steps {
                     // 주입된 sidecar를 포함한 리소스를 배포합니다.
-                    sh 'sudo istioctl kube-inject -f front-dp.yaml > ./istio/injection-front-dp.yaml'
+                    sh 'sudo istioctl kube-inject -f front.yaml > ./istio/injection-front.yaml'
                 }
             post {
                 failure {
