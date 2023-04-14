@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -14,9 +15,22 @@ spec:
     spec:
       containers:
         - name: web-front
-          image: 236747833953.dkr.ecr.ap-northeast-2.amazonaws.com/jinyong:9
+          image: 236747833953.dkr.ecr.ap-northeast-2.amazonaws.com/web-front:2.04
           ports:
             - containerPort: 3000
       imagePullSecrets:
         - name: ap-northeast-2-ecr-secret
       restartPolicy: Always
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-front
+spec:
+  selector:
+    app: web-front
+  ports:
+    - name: http
+      port: 3000
+      targetPort: 3000

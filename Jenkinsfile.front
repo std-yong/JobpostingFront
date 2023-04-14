@@ -97,10 +97,10 @@ pipeline {
             }
             post {
                 failure {
-                    echo 'Container Deploy failure'
+                    echo 'Manifest Update failure'
                 }
                 success {
-                    echo 'Container Deploy success'
+                    echo 'Manifest Update  success'
                 }
             }
         }
