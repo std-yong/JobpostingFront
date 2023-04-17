@@ -1,27 +1,36 @@
 import React, { useState } from "react";
 const categories = [  
-    {id: 1, name: "직무", options: ["IT", "마케팅", "경영","영업","회계","운송"]},
-    {id: 2, name: "지역", options: ["서울", "경기", "경북","경남","충청","충북","전남","전북","강원"]},
-    {id: 3, name: "기업형태", options: ["스타트업", "강소기업","중소기업", "대기업","외국계","공기업"]},
-    {id: 4, name: "경력", options: ["신입", "1~3","4~6", "7~10","10년 이상"]}
+    {id: 1, name: "직무", options: ["전략기획", "마케팅", "재무", "법무","인사","IT","데이터 분석","디자인"
+                                  ,"영업","무역","조달","물류","교육","미디어","보험","건설","생산","연구개발(R&D)"]},
+    {id: 2, name: "지역", options: ["서울", "제주", "광주","대구","대전","부산","울산","인천","강원","경기","경남","경북","전남","전북","충남","충북"]},
+    {id: 3, name: "기업형태", options: ["대기업", "중견기업","중소기업", "소기업","스타트업"]},
+    {id: 4, name: "경력", options: ["신입", "경력"]}
   ];
-const FilterBox = () =>{
+const FilterBox = ({selectedCategories, onSelectedCategoriesChange}) =>{
 
-    const [selectedCategories, setSelectedCategories] = useState([]);
-    const handleCategoryChange = (categoryId, option) => {
+    //const [selectedCategories, setSelectedCategories] = useState([]);
+    const handleCategoryChange = (categoryId, option, checked) => {
       let newCategories = [...selectedCategories];
-      const index = newCategories.findIndex(c => c.categoryId === categoryId);
-      if (index >= 0) {
-        if (newCategories[index].options.includes(option)) {
-          newCategories[index].options = newCategories[index].options.filter(o => o !== option);
+      const categoryIndex = newCategories.findIndex((category) => category.categoryId === categoryId);
+    
+      if (categoryIndex >= 0) {
+        if (checked) {
+          newCategories[categoryIndex].options.push(option);
         } else {
-          newCategories[index].options.push(option);
+          newCategories[categoryIndex].options = newCategories[categoryIndex].options.filter((opt) => opt !== option);
+          if (newCategories[categoryIndex].options.length === 0) {
+            newCategories = newCategories.filter((category) => category.categoryId !== categoryId);
+          }
         }
-      } else {
+      } else if (checked) {
         newCategories.push({ categoryId: categoryId, options: [option] });
       }
-      setSelectedCategories(newCategories);
+    
+      if (onSelectedCategoriesChange) {
+        onSelectedCategoriesChange(newCategories);
+      }
     };
+    
     return(
         <>
           <div className="container text-center" style={{backgroundColor: "#f2f2f2",width: '1000px', marginTop : '5px', marginBottom : '5px', padding : '5px',borderRadius : '5px'}}>
@@ -34,7 +43,7 @@ const FilterBox = () =>{
                     <input
                     type="checkbox"
                     checked={selectedCategories.some(c => c.categoryId === category.id && c.options.includes(option))}
-                    onChange={() => handleCategoryChange(category.id, option)}
+                    onChange={(e) => handleCategoryChange(category.id, option, e.target.checked)}
                     />
                     {option}
                 </label>

@@ -3,7 +3,18 @@ import BootstrapHead from './BootstrapHead';
 import Modal from "react-modal";
 import React, { useState } from "react";
 
-function Navbar (){
+function Navbar ({ onSearchChange }){
+
+    const [searchTerm, setSearchTerm] = useState("");
+
+    const handleSearchChange = (e) => {
+      setSearchTerm(e.target.value);
+      if (onSearchChange) {
+        onSearchChange(e.target.value);
+      }
+    };
+
+
     const HandlelogoClick = () => {
         window.scrollTo({ top : 0, behavior: 'smooth'});
     }
@@ -12,10 +23,13 @@ function Navbar (){
 
     const HandleAddBoxClick = () => {
       setModalIsOpen(true);
+      document.body.style.overflowY = "hidden";
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     };
   
     const closeModal = () => {
       setModalIsOpen(false);
+      document.body.style.overflowY = "auto";
     };
 
   return (
@@ -34,6 +48,8 @@ function Navbar (){
             type="search"
             placeholder="검색"
             aria-label="Search"
+            value={searchTerm}
+            onChange={handleSearchChange}
           />
         </div>
       </div>
@@ -53,7 +69,10 @@ function Navbar (){
       >
         <div className="modal_overlay">
           <div className="modal_window">
-            <button onClick={closeModal}>Close</button>
+            <img
+              className='material_icons_feed'
+              src='navbar/closebox.svg'
+              onClick={closeModal}/>
             {/* 모달창 안에 들어갈 내용을 작성하세요. */}
           </div>
         </div>

@@ -3,10 +3,10 @@ import styles from "../styles/MainBody.module.css";
 import LeftBody from "./LeftBody";
 import RightBody from "./RightBody";
 
-function MainBody () {
+function MainBody ({selectedCategories, searchTerm}) {
   return (
     <div className={styles.MainBody}>
-    <LeftBody />
+    <LeftBody selectedCategories={selectedCategories}  />
     <RightBody />
   </div>
   );
