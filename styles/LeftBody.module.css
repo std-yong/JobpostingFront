@@ -1,5 +1,5 @@
 .left_body {
-    margin-right: 100px;
+    margin-right: 0px;
     width: 500px;
     height: 2000px;
     display: flex;
@@ -12,7 +12,9 @@
     margin: 10px;
     min-height: auto;
     padding-bottom: 10px;
-    border: solid;
+    border-style: solid;
+    border-color: #999999;
+    border-width: 1px;
 }
 
 .feed_img {
@@ -21,31 +23,20 @@
 }
 
 .feed_content {
-    padding: 0px 10px;
+    padding: 0px 5px;
 }
 
 .feed_like {
     padding: 0px 10px;
 }
 
-.feed_reply {
-    padding: 0px 10px;
-    display: flex;
-    flex-direction: column;
-}
-
 .feed_txt {
     font-size: 14px;
-}
-
-.material_icons_feed {
-    width: 24px;
-    height: 24px;
-    object-fit: cover;
+    padding: 0px 10px;
 }
 
 .feed_icon {
-    padding: 5px 5px 0px 0px;
+    padding: 5px 5px 0px 5px;
     display: flex;
     justify-content: space-between;
 }
@@ -104,20 +95,7 @@
     text-decoration: none;
 }
 
-.recommend_box {
-    display: flex;
-    justify-content: space-between;
-    padding: 5px;
-    font-size: 14px;
-    font-weight: bold;
-    align-items: center;
-}
-
-.comment_box {
-    margin: 40px 0 0 5px;
-    font-size: 12px;
-    font-weight: bold;
-    color: lightgray;
-    display: flex;
-    flex-direction: column;
+.material_icons_feed {
+    width: 24px;
+    height: 24px;
 }
