@@ -1,8 +1,10 @@
 import React from "react";
 import styles from "../styles/RightBody.module.css";
+import BootstrapHead from "./BootstrapHead";
 
 export default function RightBody() {
   return (
+    <><BootstrapHead/>
     <div className={styles.right_body}>
       <div className={styles.feed_name}>
         <div className={styles.flex_center}>
@@ -51,5 +53,6 @@ export default function RightBody() {
         </div>
       </div>
     </div>
+    </>
   );
 }
