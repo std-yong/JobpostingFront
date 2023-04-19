@@ -6,7 +6,8 @@ const categories = [
                                   ,"영업","무역","조달","물류","교육","미디어","보험","건설","생산","연구개발(R&D)"]},
     {id: 2, name: "지역", options: ["서울", "제주", "광주","대구","대전","부산","울산","인천","강원","경기","경남","경북","전남","전북","충남","충북"]},
     {id: 3, name: "기업형태", options: ["대기업", "중견기업","중소기업", "소기업","스타트업"]},
-    {id: 4, name: "경력", options: ["신입", "경력"]}
+    {id: 4, name: "경력", options: ["신입", "경력"]},
+    {id: 5, name: "고용형태", options: ["정규직", "비정규직"]},
   ];
 
 const FilterBox = ({selectedCategories, onSelectedCategoriesChange}) =>{

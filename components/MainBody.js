@@ -12,7 +12,7 @@ function MainBody({ selectedCategories, searchTerm, onSelectedCategoriesChange }
         selectedCategories={selectedCategories}
         onSelectedCategoriesChange={onSelectedCategoriesChange}
       />
-      <LeftBody selectedCategories={selectedCategories} />
+      <LeftBody searchTerm={searchTerm}  selectedCategories={selectedCategories} />
       <RightBody />
     </div>
   );

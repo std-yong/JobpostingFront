@@ -5,6 +5,10 @@ import { getContent } from '../pages/api';
 
 export default LeftBody;
 
+function searchContent(content, searchTerm) {
+  return content.company_name.toLowerCase().includes(searchTerm.toLowerCase());
+}
+
 function filterContent(content, selectedCategories) {
   return selectedCategories.every((category)=> {
     const categoryKey = {
@@ -12,22 +16,63 @@ function filterContent(content, selectedCategories) {
       2: "job_location",
       3: "company_type",
       4: "experience_level",
+      5: "employment_type"
     }[category.categoryId];
+//// Boolean처리
+    if (category.categoryId === 4) {
+      const isPermanent = content[categoryKey] === true;
+      const isSelectedPermanent = category.options.some(
+        (option) => option === "신입"
+      );
+      const isSelectedTemporary = category.options.some(
+        (option) => option === "경력"
+      );
 
-    return category.options.includes(content[categoryKey]);
-  })
+      if (isSelectedPermanent && isSelectedTemporary) {
+        return true;
+      } else if (isSelectedPermanent) {
+        return isPermanent;
+      } else if (isSelectedTemporary) {
+        return !isPermanent;
+      } else {
+        return false;
+      }
+    } else if (category.categoryId === 5) {
+      const isPermanent = content[categoryKey] === true;
+      const isSelectedPermanent = category.options.some(
+        (option) => option === "정규직"
+      );
+      const isSelectedTemporary = category.options.some(
+        (option) => option === "비정규직"
+      );
+
+      if (isSelectedPermanent && isSelectedTemporary) {
+        return true;
+      } else if (isSelectedPermanent) {
+        return isPermanent;
+      } else if (isSelectedTemporary) {
+        return !isPermanent;
+      } else {
+        return false;
+      }
+    } else {
+      return category.options.includes(content[categoryKey]);
+    }
+  });
 }
 
-function LeftBody ({selectedCategories}) {
+function LeftBody ({selectedCategories, searchTerm}) {
   const [contents, setContents] = React.useState([]);
-
+  const hadleButtonClick = (url) => {
+    window.open(url,"_blank");
+  }
   React.useEffect(() => {
     async function fetchContent() {
       const contentData = await getContent();
       setContents(contentData);
     }
     fetchContent();
-  }, [selectedCategories]);
+  }, [selectedCategories, searchTerm]);
 
   return (
     <>
@@ -39,6 +84,7 @@ function LeftBody ({selectedCategories}) {
             ? true
             : filterContent(content, selectedCategories)
         )
+        .filter((content)=> searchContent(content, searchTerm))
         .map((content) => (
             <div key={content.id} className={styles.feed_box}>
               <div className={styles.feed_name}>
@@ -53,9 +99,12 @@ function LeftBody ({selectedCategories}) {
                   <span className={styles.feed_name_txt}>{content.company_name}</span>
                 </div>
                 <div>
-                  <img className={styles.material_icons_feed} src="leftbody/favorite.svg" />
-                  <img className={styles.material_icons_feed} src="leftbody/send.svg" />
-                  <img className={styles.material_icons_feed} src="leftbody/bookmark.svg" />
+                  <button className={styles.image_button} onClick = {()=> hadleButtonClick(content.company_image_url)}>
+                    <img className={styles.material_icons_feed} src="leftbody/send.svg" />
+                  </button>
+                  {/* <img className={styles.material_icons_feed} src="leftbody/favorite.svg" /> */}
+                  
+                  {/* <img className={styles.material_icons_feed} src="leftbody/bookmark.svg" /> */}
                 </div>
               </div>
               <div className="feed_content">

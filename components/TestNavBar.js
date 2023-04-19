@@ -50,6 +50,12 @@ function Navbar ({ onSearchChange }){
             aria-label="Search"
             value={searchTerm}
             onChange={handleSearchChange}
+            onKeyDown={(e)=> {
+              if (e.key === "Enter") 
+                { e.preventDefault();
+                  handleSearchChange(e);
+                }
+            }}
           />
         </div>
       </div>

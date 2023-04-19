@@ -98,4 +98,11 @@
 .material_icons_feed {
     width: 24px;
     height: 24px;
+    margin-right: 24px;
+}
+.image_button {
+    background: none;
+    border : none;
+    padding: 0;
+    cursor: pointer;
 }
