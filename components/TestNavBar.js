@@ -37,9 +37,7 @@ function Navbar ({ onSearchChange }){
     <BootstrapHead/>
     <nav>
       <div className="left" onClick={HandlelogoClick}> {/* 왼쪽 요소 */}
-        <Link legacyBehavior href="/">
           <a><img src="/images/rolling.png" alt="Logo" /></a>
-        </Link>
       </div>
       <div className="center"> {/* 가운데 요소 */}
         <div className="search-box">
