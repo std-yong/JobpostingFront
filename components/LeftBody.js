@@ -6,6 +6,9 @@ import { getContent } from '../pages/api';
 export default LeftBody;
 
 function searchContent(content, searchTerm) {
+  if (!searchTerm) {
+    return true;
+  }
   return content.company_name.toLowerCase().includes(searchTerm.toLowerCase());
 }
 
