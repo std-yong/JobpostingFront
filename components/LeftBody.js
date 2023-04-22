@@ -102,7 +102,7 @@ function LeftBody ({selectedCategories, searchTerm}) {
                   <span className={styles.feed_name_txt}>{content.company_name}</span>
                 </div>
                 <div>
-                  <button className={styles.image_button} onClick = {()=> hadleButtonClick(content.company_image_url)}>
+                  <button className={styles.image_button} onClick = {()=> hadleButtonClick(content.job_poster)}>
                     <img className={styles.material_icons_feed} src="leftbody/send.svg" />
                   </button>
                   {/* <img className={styles.material_icons_feed} src="leftbody/favorite.svg" /> */}
