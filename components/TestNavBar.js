@@ -57,30 +57,6 @@ function Navbar ({ onSearchChange }){
           />
         </div>
       </div>
-      <div className="right"> {/* 오른쪽 요소 */}
-        <div className="box">
-          <img 
-            className="material_icons_feed" 
-            src="navbar/addbox.svg" 
-            onClick={HandleAddBoxClick}/>
-        </div>
-      </div>
-     <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        className="Modal"
-        overlayClassName="Overlay"
-      >
-        <div className="modal_overlay">
-          <div className="modal_window">
-            <img
-              className='material_icons_feed'
-              src='navbar/closebox.svg'
-              onClick={closeModal}/>
-            {/* 모달창 안에 들어갈 내용을 작성하세요. */}
-          </div>
-        </div>
-      </Modal>
       <style jsx>{`
         nav {
             background-color: #fafafa;
